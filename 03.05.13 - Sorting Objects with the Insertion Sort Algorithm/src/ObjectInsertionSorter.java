@@ -1,53 +1,53 @@
 public class ObjectInsertionSorter
 {
-    public static <T extends Comparable<T>> void sort(T[] objects)
+    public static <T extends Comparable<T>> void sort(T[] array)
     {
-        quicksort(objects, 0, objects.length);
+        quicksort(array, 0, array.length - 1);
     }
 
-    private static <T extends Comparable<T>> void quicksort(T[] objects, int start, int end)
+    private static <T extends Comparable<T>> void quicksort(T[] array, int start, int end)
     {
         int pivotPoint;
 
         if (start < end)
         {
-            pivotPoint = partition(objects, start, end);
+            pivotPoint = partition(array, start, end);
 
-            quicksort(objects, start, pivotPoint - 1);
-            quicksort(objects, pivotPoint + 1, end);
-        }
+            quicksort(array, start, pivotPoint - 1);
+            quicksort(array, pivotPoint + 1, end); }
     }
 
-    private static <T extends Comparable<T>> int partition(T[] objects, int start, int end)
+    private static <T extends Comparable<T>> int partition(T[] array, int start, int end)
     {
         T pivotValue;
         int endOfLeftList;
         int mid;
 
         mid = (start + end) / 2;
-        swap(objects, start, mid);
+        swap(array, start, mid);
 
-        pivotValue = objects[start];
+        pivotValue = array[start];
         endOfLeftList = start;
 
-        for (int scan = start; scan < end; scan++)
+        for (int scan = start + 1; scan <= end; scan++)
         {
-            if (objects[scan].compareTo(pivotValue) < 0)
+            if (array[scan].compareTo(pivotValue) < 0)
             {
                 endOfLeftList++;
-                swap(objects, endOfLeftList, scan);
+                swap(array, endOfLeftList, scan);
             }
         }
 
-        swap(objects, start, endOfLeftList);
+        swap(array, start, endOfLeftList);
 
         return endOfLeftList;
     }
 
-    private static void swap(Comparable<?>[] objects, int a, int b)
+    private static <T extends Comparable<T>> void swap(T[] array, int a, int b)
     {
-        Comparable<?> temp = objects[a];
-        objects[a] = objects[b];
-        objects[b] = temp;
+        T temp = array[a];
+
+        array[a] = array[b];
+        array[b] = temp;
     }
 }
