@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MyList<T extends Number>
 {
@@ -30,6 +32,13 @@ public class MyList<T extends Number>
 
     private void sort(ArrayList<T> array)
     {
-        NumberSorter.sort(array);
+        Collections.sort(array, new Comparator<T>()
+        {
+            @Override
+            public int compare(T o1, T o2)
+            {
+                return o1.byteValue() - o2.byteValue();
+            }
+        });
     }
 }
