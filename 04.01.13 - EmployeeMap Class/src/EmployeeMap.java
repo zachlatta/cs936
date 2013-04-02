@@ -16,7 +16,7 @@ public class EmployeeMap
     }
 
     /**
-     * Looks up an employee in the map.
+     * Look up an employee in the map.
      *
      * @param id Employee id to look up.
      * @return Matching employee's name.
